@@ -1,0 +1,129 @@
+<section class="getting-started">
+  <div class="fab" style="position: fixed; top: 10px; right: 15px;z-index: 100; color: white;">
+    <b style="color: white; font-size: larger;">Filtrado por: </b>
+    <mat-button-toggle-group (change)="showBySubject = !showBySubject" [value]="showBySubject" name="filter" aria-label="Font Style">
+      <mat-button-toggle [value]="false">Materias</mat-button-toggle>
+      <mat-button-toggle [value]="true">Semanas</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <mat-pages title="Desarrollo - Fechas" (pageChanged)="onPageChanges($event)" (done)="onLastPageReached()">
+    <mat-page-loader>
+      <mat-page-outlook title="Introducción">
+      </mat-page-outlook>
+      <mat-page-content>
+        <mat-card-title> Mis Deberes </mat-card-title>
+
+        <mat-card-content class="mat-app-background basic-container dashboard-card-content">
+          <div class="card-container">
+            <div class="dashboard-card">
+              <mat-card class="card">
+                <mat-card-title><span style='flex: 1 1 auto; font-size:100px;'>🦁</span>
+                </mat-card-title>
+
+                <ul>
+                  <li style="text-align:left;">
+                    <a mat-flat-button color="accent">Click aquí...</a> Los deberes con este boton han sido
+                    completados.
+                    <br />
+                  </li>
+                  <br/>
+                  <li>
+                    <a disabled="true" mat-stroked-button color="basic">Pendiente</a> Este boton indica que aun no se han
+                    desarrollado esos deberes.
+                  </li>
+                </ul>
+
+                <mat-card-content style="display: flex; justify-content: center;">
+                  <img src="./assets/img/study1.jpeg" class="image">
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-page-content>
+    </mat-page-loader>
+    <mat-page-loader *ngFor="let data of (showBySubject? toShow.byWeek: toShow.bySubject); let i = index">
+      <mat-page-outlook [title]="data.key">
+      </mat-page-outlook>
+      <mat-page-content>
+        <mat-card-title> {{data.key}} </mat-card-title>
+        <mat-card-content class="mat-app-background basic-container dashboard-card-content">
+          <div *ngIf="data.works.length === 0">
+            <div class="card-container">
+              <div class="dashboard-card">
+                <mat-card class="card">
+                  <mat-card-title>Muy Pronto!
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    Estamos trabajando en ello, gracias!<span style='flex: 1 1 auto; font-size:100px;'>🦁</span>
+                  </mat-card-subtitle>
+                  <mat-card-content class="dashboard-card-content" fxLayout="row" fxLayoutAlign="space-between">
+                    <img src="./assets/img/study1.jpeg" class="image">
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let work of data.works">
+            <app-card-trabajo [work]="work"></app-card-trabajo>
+          </div>
+        </mat-card-content>
+      </mat-page-content>
+    </mat-page-loader>
+<!--
+    <mat-page-loader *ngFor="let week of weeks">
+      <mat-page-outlook [title]="week.text">
+      </mat-page-outlook>
+      <mat-page-content>
+        <mat-card-title> {{week.text}} </mat-card-title>
+        <mat-card-content class="mat-app-background basic-container dashboard-card-content">
+          <div *ngIf="getWorksFromWeek(week.id).length === 0">
+            <div class="card-container">
+              <div class="dashboard-card">
+                <mat-card class="card" *ngFor="let work of getWorksFromWeek(weeks[2].id)">
+                  <mat-card-title>Muy Pronto!
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    Estamos trabajando en ello, gracias!<span style='flex: 1 1 auto; font-size:100px;'>🦁</span>
+                  </mat-card-subtitle>
+                  <mat-card-content class="dashboard-card-content" fxLayout="row" fxLayoutAlign="space-between">
+                    <img src="./assets/img/study1.jpeg" class="image">
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let work of getWorksFromWeek(week.id)">
+            <app-card-trabajo [work]="work"></app-card-trabajo>
+          </div>
+        </mat-card-content>
+      </mat-page-content>
+    </mat-page-loader>
+  -->
+    <mat-page-loader>
+      <mat-page-outlook title="Próximamente más contenido...">
+      </mat-page-outlook>
+      <mat-page-content>
+        <mat-card-title> Conclusión </mat-card-title>
+        <mat-card-content class="mat-app-background basic-container dashboard-card-content">
+          <div class="card-container">
+            <div class="dashboard-card">
+              <mat-card class="card" *ngFor="let work of getWorksFromWeek(weeks[2].id)">
+                <mat-card-title>Muy Pronto!
+                </mat-card-title>
+                <mat-card-subtitle>
+                  Continuará...
+                </mat-card-subtitle>
+                <mat-card-content class="dashboard-card-content" fxLayout="row" fxLayoutAlign="space-between">
+                  <img src="./assets/img/study2.jpeg" class="image">
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-page-content>
+    </mat-page-loader>
+  </mat-pages>
+
+</section>

@@ -1,0 +1,29 @@
+<div class="card-container">
+  <mat-card>
+    <mat-card-title>Ingresar</mat-card-title>
+    <mat-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="imgcontainer">
+          <img src="./assets/img/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Contraseña" formControlName="password">
+          </mat-form-field>
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary">Aceptar</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

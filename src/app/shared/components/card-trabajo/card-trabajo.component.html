@@ -1,0 +1,19 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header>
+      <div *ngIf="work.avatarImg" mat-card-avatar class="avatar-img" style="background-image: url('https://api.adorable.io/avatars/90/ubicapo.png');"></div>
+      <mat-card-title>{{work.title}}</mat-card-title>
+      <mat-card-subtitle>{{work.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="card-image" [src]="work.img" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+       {{ work.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <a target="_blank" [href]="work.fileUrl" *ngIf="work.done" mat-flat-button color="accent" >Click aquí...</a>
+        <button disabled="true"  *ngIf="!work.done" mat-stroked-button color="basic">Pendiente</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
